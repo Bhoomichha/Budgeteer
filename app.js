@@ -17,14 +17,9 @@ app.use(expressLayouts);
 app.set('layout','./layouts/main');
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res)=> {
-  const locals = {
-    title: 'Budgeteer',
-    description: 'App for savings and budgeting'
-  }
-  
-  res.render('index', locals);
-})
+// Routes
+app.use('/', require('./server/routes/index.js'));
+
 const PORT = process.env.PORT
 const server = () => {
   db()
