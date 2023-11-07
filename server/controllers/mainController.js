@@ -19,5 +19,15 @@ exports.login = async (req, res) => {
     res.render('login', locals);
 }
 
+//Get sign up page
+exports.register = async (req, res) => {
+    const locals = {
+        title: 'Get Started - Budgeteer',
+        description: 'Register to create an account',
+    }
+        
+    res.render('register', locals);
+}
+
 
 
