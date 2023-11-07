@@ -1,3 +1,12 @@
-body{
-    background-color: #F0F4E4;
+:root{
+    --background-color: #F0F4E4;
+    --color:#000000;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--background-color);
+    color: var(--color);
+    font-weight: 300;
+    font-size: 1.2rem;
 }
