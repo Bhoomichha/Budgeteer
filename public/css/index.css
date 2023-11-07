@@ -1,0 +1,15 @@
+.nav{
+    margin-left: 200px;
+    float: left;
+}
+body{
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--background-color);
+    color: var(--color);
+    font-weight: 300;
+    font-size: 1.2rem;
+    max-width: 80%;
+    min-width: 360px;
+   
+
+}

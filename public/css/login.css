@@ -1,0 +1,24 @@
+:root {
+  --background-color: #F0F4E4;
+  --color: #000000;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--background-color);
+  color: var(--color);
+  font-weight: 300;
+  font-size: 1.2rem;
+  max-width: 80%;
+  min-width: 360px;
+  margin: 0px 20px 0px 180px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family:'Unbounded', cursive;
+  font-weight: 800;
+}
+
+.container {
+  max-width: 1600px;
+}

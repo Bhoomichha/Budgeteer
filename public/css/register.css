@@ -1,9 +1,9 @@
 :root {
     --background-color: #F0F4E4;
     --color: #000000;
-}
-
-body {
+  }
+  
+  body {
     font-family: 'DM Sans', sans-serif;
     background-color: var(--background-color);
     color: var(--color);
@@ -12,20 +12,13 @@ body {
     max-width: 80%;
     min-width: 360px;
     margin: 0px 20px 0px 180px;
-}
-
-h1, h2, h3, h4, h5, h6 {
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
     font-family:'Unbounded', cursive;
     font-weight: 800;
-}
-
-.container {
+  }
+  
+  .container {
     max-width: 1600px;
-}
-
-/*Button*/
-.btn {
-    padding-left: 1.6rem;
-    padding-right: 1.6rem;
-    border-radius: 2rem;
-}
+  }
