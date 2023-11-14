@@ -8,6 +8,16 @@ exports.mainPage = async (req, res) => {
         
     res.render('index', locals);
 }
+
+//Get HomePage
+exports.homePage = async(req,res)=>{
+    const locals ={
+        title:'Home',   
+        description:'Welcome to Budgeteer'  
+    }
+
+    res.render('homePage', locals);
+}
 // Get LoginPage
 
 exports.login = async (req, res) => {
