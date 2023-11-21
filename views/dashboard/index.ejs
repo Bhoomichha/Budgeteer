@@ -21,6 +21,7 @@
         >
           <h5 class="card-title"><%= savings[i].title %></h5>
           <p class="card-text"><%= savings[i].body %></p>
+          <p class="card-text">Target Goal: $<%= savings[i].amount %></p>
         </a>
       </div>
     </div>
@@ -34,11 +35,11 @@
       </div>
       <div class="col mt-md-4">
         <h3>
-          Hey, <%= userName %>. You don't have not set any goals or budgets yet!
+          Hey, <%= userName %>. You have not set any goals or budgets yet!
         </h3>
         <h5>
           Let's start your Saving Journey!<br /><br /><br /><br /><br /><br /><br />
-          <a href="/dashboard/add">Create one!</a>
+          <a href="/dashboard/add">Set a Saving Goal!</a>
         </h5>
       </div>
     </div>

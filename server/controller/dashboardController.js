@@ -24,6 +24,7 @@ exports.dashboard = async (req, res) => {
         $project: {
           title: { $substr: ["$title", 0, 50] },
           body: { $substr: ["$body", 0, 100] },
+          amount: { $substr: ["$amount", 0, 30] },
         },
       },
     ])
@@ -73,7 +74,12 @@ exports.dashboardUpdateSavings = async (req, res) => {
   try {
     await Saving.findByIdAndUpdate(
       { _id: req.params.id },
-      { title: req.body.title, body: req.body.body, updatedAt: Date.now() }
+      {
+        title: req.body.title,
+        body: req.body.body,
+        amount: req.body.amount,
+        updatedAt: Date.now(),
+      }
     ).where({ user: req.user.id });
     res.redirect("/dashboard");
   } catch (error) {
