@@ -1,52 +1,57 @@
-require('dotenv').config();
+require("dotenv").config();
 
-
-//Imports
-const mongoose = require('mongoose');
-const express = require('express');
-const expressLayouts = require('express-ejs-layouts');
-const { db } = require('./server/config/db.js'); 
-const session = require("express-session"); 
-const passport = require('passport');
-const MongoStore = require('connect-mongo');
+const express = require("express");
+const expressLayouts = require("express-ejs-layouts");
+const methodOverride = require("method-override");
+const connectDB = require("./server/config/db.js");
+const session = require("express-session");
+const passport = require("passport");
+const MongoStore = require("connect-mongo");
 
 const app = express();
+const port = 2004 || process.env.PORT;
+
+app.use(
+  session({
+    secret: "Budgeteer Project",
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URL,
+    }),
+    //cookie: { maxAge: new Date(Date.now() + 3600000) },
+  })
+);
 
 app.use(passport.initialize());
-//app.use(passport.session());
+app.use(passport.session());
 
-//middlewares
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(methodOverride("_method"));
 
-//Static files
-app.use(express.static('public'));
-// Templating Engine
+//Connect to Database
+connectDB();
+
+//Static Files
+app.use(express.static("public"));
+
+//Templating Engine Setup
 app.use(expressLayouts);
-app.set('layout','./layouts/main');
-app.set('view engine', 'ejs');
+app.set("layout", "./layouts/main");
+app.set("view engine", "ejs");
 
+//Routes
+app.use("/", require("./server/routes/auth"));
+app.use("/", require("./server/routes/index"));
+app.use("/", require("./server/routes/dashboard"));
 
-// Routes
-app.use('/', require('./server/routes/index.js'));
-app.use('/', require('./server/routes/dashboard.js'));
-app.use('/', require('./server/routes/auth.js'));
+// Handle 404
+app.get("*", function (req, res) {
+  //res.status(404).send('404 Page Not Found.')
+  res.status(404).render("404");
+});
 
-
-//Handle 404 
-app.get('*', function(req, res){ 
-  
-  res.status(404).render('404');
-})
-
-
-const PORT = process.env.PORT
-const server = () => {
-  db()
-    app.listen(PORT, () =>{
-        console.log(`Server is running on port ${PORT}`)    
-    })
-}
-
-server()
-
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
