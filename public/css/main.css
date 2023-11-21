@@ -69,16 +69,10 @@
   }
   
   
-  .home-title::before {
-    content: url('../img/stars.svg');
-    position: absolute;
-    left: -50px;
-    top: -30px;
-  }
   
   .home-title::after {
-    content: url('../img/stars.svg');
+    content: url('../img/sparkle.svg');
     position: absolute;
-    right: -50px;
+    right: 5px;
     bottom: -30px;
   }
