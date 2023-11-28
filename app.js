@@ -1,6 +1,8 @@
 require("dotenv").config();
 
 const express = require("express");
+const bcrypt = require("bcrypt");
+const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
 const methodOverride = require("method-override");
 const connectDB = require("./server/config/db.js");
