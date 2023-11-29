@@ -21,7 +21,6 @@ app.use(
     store: MongoStore.create({
       mongoUrl: process.env.MONGO_URL,
     }),
-    //cookie: { maxAge: new Date(Date.now() + 3600000) },
   })
 );
 
@@ -50,7 +49,6 @@ app.use("/", require("./server/routes/dashboard"));
 
 // Handle 404
 app.get("*", function (req, res) {
-  //res.status(404).send('404 Page Not Found.')
   res.status(404).render("404");
 });
 

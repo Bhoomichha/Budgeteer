@@ -2,6 +2,8 @@
  * Get Homepage
  */
 
+const { collection } = require("../models/savings");
+
 exports.mainPage = async (req, res) => {
   const locals = {
     title: "Budgeteer",
@@ -14,14 +16,34 @@ exports.mainPage = async (req, res) => {
   });
 };
 /*
- * Get About
- */
-
-exports.about = async (req, res) => {
+  Get Login
+*/
+exports.login = async (req, res) => {
   const locals = {
-    title: "About - Budgeteer",
-    description: "App for savings and budgeting",
+    title: "Log In",
+    description: "Log in form to start budgeteer",
   };
 
-  res.render("about", locals);
+  res.render("login", locals);
+};
+/*
+  Get register
+*/
+exports.register = async (req, res) => {
+  const locals = {
+    title: "Sign Up",
+    description: "Sign up form to start budgeteer",
+  };
+
+  res.render("register", locals);
+};
+exports.registerGet = async (req, res) => {
+  const data = {
+    firtsname: req.body.firstName,
+    lastname: req.body.lastName,
+    password: req.body.password,
+  };
+
+  const userdata = await collection.insertMany(data);
+  console.log(userdata);
 };

@@ -22,6 +22,17 @@
           <h5 class="card-title"><%= savings[i].title %></h5>
           <p class="card-text"><%= savings[i].body %></p>
           <p class="card-text">Target Goal: $<%= savings[i].amount %></p>
+          <% if (savings[i].deposit !== undefined && savings[i].deposit !==
+          null) { %>
+          <p class="card-text">Deposited Amount: $<%= savings[i].deposit %></p>
+          <% } else { %>
+          <p class="card-text">Deposited Amount: N/A</p>
+          <% } %>
+          <p class="card-text">
+            Remaining Amount: $<%= (() => { console.log(savings); return (typeof
+            savings.amount === 'number' && typeof savings.deposit === 'number')
+            ? (savings.amount - savings.deposit) : 'N/A'; })() %>
+          </p>
         </a>
       </div>
     </div>

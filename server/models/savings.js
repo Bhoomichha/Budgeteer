@@ -19,6 +19,14 @@ const SavingSchema = new Schema({
     type: Number,
     required: true,
   },
+  deposit: {
+    type: Number,
+    required: false,
+  },
+  remaining: {
+    type: Number,
+    required: false,
+  },
 
   createdAt: {
     type: Date,

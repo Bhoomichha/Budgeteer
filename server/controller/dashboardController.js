@@ -16,7 +16,6 @@ exports.dashboard = async (req, res) => {
   };
 
   try {
-    // Mongoose "^7.0.0 Update
     const savings = await Saving.aggregate([
       { $sort: { updatedAt: -1 } },
       { $match: { user: new mongoose.Types.ObjectId(req.user.id) } },
@@ -24,7 +23,9 @@ exports.dashboard = async (req, res) => {
         $project: {
           title: { $substr: ["$title", 0, 50] },
           body: { $substr: ["$body", 0, 100] },
-          amount: { $substr: ["$amount", 0, 30] },
+          amount: { $substr: ["$amount", 0, 100] },
+          deposit: { $substr: ["$deposit", 0, 100] },
+          remaining: { $substr: ["$deposit", 0, 100] },
         },
       },
     ])
@@ -78,9 +79,12 @@ exports.dashboardUpdateSavings = async (req, res) => {
         title: req.body.title,
         body: req.body.body,
         amount: req.body.amount,
+        deposit: req.body.deposit,
+        remaining: req.body.remaining,
         updatedAt: Date.now(),
       }
     ).where({ user: req.user.id });
+
     res.redirect("/dashboard");
   } catch (error) {
     console.log(error);
