@@ -16,7 +16,7 @@ exports.dashboard = async (req, res) => {
   };
 
   try {
-    const savings = await Saving.aggregate([
+    const saving = await Saving.aggregate([
       { $sort: { updatedAt: -1 } },
       { $match: { user: new mongoose.Types.ObjectId(req.user.id) } },
       {
@@ -40,7 +40,7 @@ exports.dashboard = async (req, res) => {
     res.render("dashboard/index", {
       userName: req.user.firstName,
       locals,
-      savings,
+      saving,
       layout: "../views/layouts/dashboard",
       current: page,
       pages: Math.ceil(count / perPage),

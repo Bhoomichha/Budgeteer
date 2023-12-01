@@ -4,7 +4,7 @@
       <h1>Welcome, <%= userName %>!</h1>
     </div>
     <div class="col text-end">
-      <a href="/dashboard/add" class="btn btn-primary">+ New Savings</a>
+      <a href="/dashboard/add" class="btn btn-primary">+ New saving</a>
     </div>
   </div>
 
@@ -12,26 +12,27 @@
     <h1 class="h2">Your Saving Goals:</h1>
     <br /><br /><br />
 
-    <% if (savings.length > 0) { for(var i=0; i < savings.length; i++) { %>
+    <% if (saving.length > 0) { for(var i=0; i < saving.length; i++) { %>
     <div class="col-sm-3 mb-4">
       <div class="card border-primary" style="min-height: 210px">
         <a
-          href="/dashboard/item/<%= savings[i]._id %>"
+          href="/dashboard/item/<%= saving[i]._id %>"
           class="card-body text-decoration-none"
         >
-          <h5 class="card-title"><%= savings[i].title %></h5>
-          <p class="card-text"><%= savings[i].body %></p>
-          <p class="card-text">Target Goal: $<%= savings[i].amount %></p>
-          <% if (savings[i].deposit !== undefined && savings[i].deposit !==
-          null) { %>
-          <p class="card-text">Deposited Amount: $<%= savings[i].deposit %></p>
+          <h5 class="card-title"><%= saving[i].title %></h5>
+          <p class="card-text"><%= saving[i].body %></p>
+          <p class="card-text">Target Goal: $<%= saving[i].amount %></p>
+          <% if (saving[i].deposit !== undefined && saving[i].deposit !== null)
+          { %>
+          <p class="card-text">Deposited Amount: $<%= saving[i].deposit %></p>
           <% } else { %>
           <p class="card-text">Deposited Amount: N/A</p>
           <% } %>
           <p class="card-text">
-            Remaining Amount: $<%= (() => { console.log(savings); return (typeof
-            savings.amount === 'number' && typeof savings.deposit === 'number')
-            ? (savings.amount - savings.deposit) : 'N/A'; })() %>
+            Remaining Amount: $<%= (() => { console.log(saving[i]); return
+            (typeof saving[i].amount === 'number' && typeof saving[i].deposit
+            === 'number') ? (saving[i].amount - saving[i].deposit) : 'N/A'; })()
+            %>
           </p>
         </a>
       </div>
@@ -56,7 +57,7 @@
     </div>
     <% } %>
   </div>
-  <% if(savings.length > 0) { %>
+  <% if(saving.length > 0) { %>
   <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center mt-5">
       <% if(current == 1) { %>
